@@ -1,0 +1,118 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.example.statusoverlay"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="34" />
+10
+11    <!-- Доступ в сеть для WebSocket-соединения -->
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:5:5-67
+12-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:5:22-64
+13
+14    <!-- Рисование поверх других приложений (оверлей) -->
+15    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+15-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:8:5-78
+15-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:8:22-75
+16
+17    <!-- Уведомления (Android 13+) -->
+18    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+18-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:11:5-77
+18-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:11:22-74
+19
+20    <!-- Запуск foreground-сервиса -->
+21    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+21-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:14:5-77
+21-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:14:22-74
+22    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+22-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:15:5-87
+22-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:15:22-84
+23
+24    <!-- КРИТИЧНО: Разрешение на фоновый захват экрана для Android 10+ -->
+25    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+25-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:18:5-94
+25-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:18:22-91
+26
+27    <permission
+27-->[androidx.core:core:1.12.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\ff46023af220ea5e2bdae25402f15b1e\workspace\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+28        android:name="com.example.statusoverlay.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+28-->[androidx.core:core:1.12.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\ff46023af220ea5e2bdae25402f15b1e\workspace\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+29        android:protectionLevel="signature" />
+29-->[androidx.core:core:1.12.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\ff46023af220ea5e2bdae25402f15b1e\workspace\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+30
+31    <uses-permission android:name="com.example.statusoverlay.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+31-->[androidx.core:core:1.12.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\ff46023af220ea5e2bdae25402f15b1e\workspace\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+31-->[androidx.core:core:1.12.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\ff46023af220ea5e2bdae25402f15b1e\workspace\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+32
+33    <application
+33-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:20:5-42:19
+34        android:allowBackup="true"
+34-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:21:9-35
+35        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+35-->[androidx.core:core:1.12.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\ff46023af220ea5e2bdae25402f15b1e\workspace\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+36        android:debuggable="true"
+37        android:extractNativeLibs="false"
+38        android:icon="@android:drawable/sym_def_app_icon"
+38-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:22:9-58
+39        android:label="Status Overlay Demo"
+39-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:23:9-44
+40        android:testOnly="true"
+41        android:theme="@style/Theme.StatusOverlay"
+41-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:24:9-51
+42        android:usesCleartextTraffic="true" >
+42-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:25:9-44
+43        <activity
+43-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:27:9-34:20
+44            android:name="com.example.statusoverlay.MainActivity"
+44-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:28:13-41
+45            android:exported="true" >
+45-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:29:13-36
+46            <intent-filter>
+46-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:30:13-33:29
+47                <action android:name="android.intent.action.MAIN" />
+47-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:31:17-69
+47-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:31:25-66
+48
+49                <category android:name="android.intent.category.LAUNCHER" />
+49-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:32:17-77
+49-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:32:27-74
+50            </intent-filter>
+51        </activity>
+52
+53        <!-- КРИТИЧНО: Указываем через "|" комбинированный тип сервиса -->
+54        <service
+54-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:37:9-40:72
+55            android:name="com.example.statusoverlay.OverlayService"
+55-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:38:13-43
+56            android:exported="false"
+56-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:39:13-37
+57            android:foregroundServiceType="dataSync|mediaProjection" />
+57-->D:\proger\helplena\android-client\app\src\main\AndroidManifest.xml:40:13-69
+58
+59        <provider
+59-->[androidx.emoji2:emoji2:1.2.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\cd71cafa84c5cd5396f0bd53dc9eed26\workspace\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+60            android:name="androidx.startup.InitializationProvider"
+60-->[androidx.emoji2:emoji2:1.2.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\cd71cafa84c5cd5396f0bd53dc9eed26\workspace\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+61            android:authorities="com.example.statusoverlay.androidx-startup"
+61-->[androidx.emoji2:emoji2:1.2.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\cd71cafa84c5cd5396f0bd53dc9eed26\workspace\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+62            android:exported="false" >
+62-->[androidx.emoji2:emoji2:1.2.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\cd71cafa84c5cd5396f0bd53dc9eed26\workspace\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+63            <meta-data
+63-->[androidx.emoji2:emoji2:1.2.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\cd71cafa84c5cd5396f0bd53dc9eed26\workspace\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+64                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+64-->[androidx.emoji2:emoji2:1.2.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\cd71cafa84c5cd5396f0bd53dc9eed26\workspace\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+65                android:value="androidx.startup" />
+65-->[androidx.emoji2:emoji2:1.2.0] C:\Users\misha\.gradle\caches\9.1.0\transforms\cd71cafa84c5cd5396f0bd53dc9eed26\workspace\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+66            <meta-data
+66-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\misha\.gradle\caches\9.1.0\transforms\6ea4071ad090be619ce247a5f78a2af6\workspace\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:31:13-33:52
+67                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+67-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\misha\.gradle\caches\9.1.0\transforms\6ea4071ad090be619ce247a5f78a2af6\workspace\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:32:17-78
+68                android:value="androidx.startup" />
+68-->[androidx.lifecycle:lifecycle-process:2.4.1] C:\Users\misha\.gradle\caches\9.1.0\transforms\6ea4071ad090be619ce247a5f78a2af6\workspace\transformed\lifecycle-process-2.4.1\AndroidManifest.xml:33:17-49
+69        </provider>
+70    </application>
+71
+72</manifest>

@@ -1,0 +1,4 @@
+#Mon Oct 26 21:13:31 MSK 2026
+base.0=D\:\\proger\\helplena\\android-client\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+path.0=0/classes.dex
+renamed.0=classes.dex

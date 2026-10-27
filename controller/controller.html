@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Панель управления — Status Overlay Demo</title>
+<style>
+  :root {
+    --bg: #f4f5f7;
+    --card: #ffffff;
+    --text: #1b1f23;
+    --muted: #6b7280;
+    --accent: #2563eb;
+    --ok: #16a34a;
+    --err: #dc2626;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1115;
+      --card: #1a1d23;
+      --text: #e8eaed;
+      --muted: #9aa0a6;
+      --accent: #5b8def;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1115;
+    --card: #1a1d23;
+    --text: #e8eaed;
+    --muted: #9aa0a6;
+    --accent: #5b8def;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    padding: 24px;
+  }
+  .card {
+    background: var(--card);
+    border-radius: 16px;
+    padding: 28px;
+    width: 100%;
+    max-width: 380px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  p.sub { color: var(--muted); font-size: 13px; margin: 0 0 20px; }
+  label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  input[type="number"] {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(128,128,128,0.3);
+    background: transparent;
+    color: var(--text);
+    font-size: 15px;
+    margin-bottom: 16px;
+  }
+  button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: var(--accent);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  .status-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--err);
+  }
+  .dot.connected { background: var(--ok); }
+  #log {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--muted);
+    max-height: 100px;
+    overflow-y: auto;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1>Status Overlay — Controller</h1>
+    <p class="sub">Отправка тестовых кодов на Android-устройство</p>
+
+    <div class="status-row">
+      <span class="dot" id="connDot"></span>
+      <span id="connText">Подключение к серверу…</span>
+    </div>
+
+    <label for="serverUrl">Адрес сервера (WebSocket)</label>
+    <input type="text" id="serverUrl" value="ws://localhost:8000/ws?role=controller" style="margin-bottom:16px;">
+
+    <label for="groupInput">Group ID</label>
+    <input type="number" id="groupInput" value="12" min="0" max="99">
+
+    <label for="statusInput">Status Code</label>
+    <input type="number" id="statusInput" value="3" min="0" max="9">
+
+    <button id="sendBtn" disabled>Отправить</button>
+
+    <div id="log"></div>
+  </div>
+
+<script>
+let ws = null;
+
+const connDot = document.getElementById('connDot');
+const connText = document.getElementById('connText');
+const sendBtn = document.getElementById('sendBtn');
+const serverUrlInput = document.getElementById('serverUrl');
+const logEl = document.getElementById('log');
+
+function log(msg) {
+  const line = document.createElement('div');
+  line.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  logEl.prepend(line);
+}
+
+function connect() {
+  const url = serverUrlInput.value.trim();
+  if (!url) return;
+
+  ws = new WebSocket(url);
+
+  ws.onopen = () => {
+    connDot.classList.add('connected');
+    connText.textContent = 'Подключено к серверу';
+    sendBtn.disabled = false;
+    log('Соединение установлено');
+  };
+
+  ws.onclose = () => {
+    connDot.classList.remove('connected');
+    connText.textContent = 'Нет соединения — переподключение через 3с';
+    sendBtn.disabled = true;
+    setTimeout(connect, 3000);
+  };
+
+  ws.onerror = () => {
+    log('Ошибка соединения');
+  };
+
+  ws.onmessage = (event) => {
+    log(`Ответ сервера: ${event.data}`);
+  };
+}
+
+document.getElementById('sendBtn').addEventListener('click', () => {
+  if (!ws || ws.readyState !== WebSocket.OPEN) return;
+
+  const group = parseInt(document.getElementById('groupInput').value, 10);
+  const status = parseInt(document.getElementById('statusInput').value, 10);
+
+  if (Number.isNaN(group) || Number.isNaN(status)) {
+    log('Введите корректные числовые значения');
+    return;
+  }
+
+  const payload = { group, status };
+  ws.send(JSON.stringify(payload));
+  log(`Отправлено: ${JSON.stringify(payload)}`);
+});
+
+connect();
+</script>
+</body>
+</html>

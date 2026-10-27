@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Status Overlay Demo</string>
+    <string name="notification_channel_name">Фоновый мониторинг</string>
+    <string name="notification_text">Соединение с сервером активно</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Status Overlay Demo</string>
+    <string name="notification_channel_name">Фоновый мониторинг</string>
+    <string name="notification_text">Соединение с сервером активно</string>
+    <style name="Theme.StatusOverlay" parent="Theme.AppCompat.DayNight.NoActionBar"/>
+</resources>
